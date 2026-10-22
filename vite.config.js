@@ -1,3 +1,5 @@
-export default {
-  publicDir: "/Users/israeltesler/.cursor/projects/Users-israeltesler/assets",
-};
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  publicDir: "public",
+});

@@ -1,0 +1,16 @@
+{
+  "name": "cross-the-city",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5174",
+    "dev:phone": "vite --host --port 5174",
+    "build": "vite build",
+    "preview": "vite preview",
+    "update:instagram": "node scripts/fetch-instagram-feed.mjs"
+  },
+  "devDependencies": {
+    "vite": "^8.3.4"
+  }
+}

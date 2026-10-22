@@ -1,0 +1,5 @@
+.env
+.cache/
+.vite/
+node_modules/
+dist/

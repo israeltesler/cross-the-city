@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Cross The City — מועדון לאימונים פונקציונליים, כוח ושיפור הכושר בטבריה, בהובלת חן סלמן."
+    />
+    <meta name="theme-color" content="#080a08" />
+    <title>Cross The City | מועדון כושר בטבריה</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Heebo:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link
+      rel="preload"
+      as="image"
+      href="/____________________________-d6af2354-4f1a-42d0-a3a4-2eed12578e9d.png"
+    />
+    <link rel="preload" as="image" href="/cross-the-city-hero-gym.jpg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      body.is-loading {
+        overflow: hidden;
+      }
+
+      .site-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: grid;
+        place-items: center;
+        background: #080a08;
+      }
+    </style>
+    <script type="module" src="./script.js"></script>
+  </head>
+  <body class="is-loading">
+    <div class="site-loader" id="site-loader" aria-live="polite" aria-busy="true">
+      <span class="sr-only">טוען את האתר</span>
+      <div class="site-loader__glow" aria-hidden="true"></div>
+      <div class="site-loader__stage">
+        <p class="site-loader__club">מועדון כושר</p>
+        <p class="site-loader__wordmark" aria-hidden="true">
+          <span class="site-loader__line">Cross</span>
+          <span class="site-loader__line site-loader__line--the">The</span>
+          <span class="site-loader__line">City</span>
+        </p>
+        <p class="site-loader__loc">טבריה</p>
+      </div>
+      <div class="site-loader__foot">
+        <p class="site-loader__pct" id="site-loader-pct" aria-hidden="true">0</p>
+        <div class="site-loader__track" aria-hidden="true">
+          <div class="site-loader__fill" id="site-loader-fill"></div>
+        </div>
+      </div>
+    </div>
+    <a class="skip-link" href="#main">דלגו לתוכן המרכזי</a>
+
+    <header class="site-header" aria-label="ניווט ראשי">
+      <a class="brand" href="#hero" aria-label="Cross The City — חזרה להתחלה">
+        <img
+          src="/____________________________-d6af2354-4f1a-42d0-a3a4-2eed12578e9d.png"
+          alt="הלוגו של Cross The City"
+        />
+      </a>
+      <div class="header-end">
+        <div class="header-social" aria-label="רשתות חברתיות">
+          <a
+            class="social-btn instagram-link"
+            href="https://www.instagram.com/cross.the.city/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="אינסטגרם — @cross.the.city"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A5.5 5.5 0 1 1 6.5 14 5.5 5.5 0 0 1 12 8.5zm0 2A3.5 3.5 0 1 0 15.5 14 3.5 3.5 0 0 0 12 10.5zM18 6.75a1 1 0 1 1-1-1 1 1 0 0 1 1 1z"
+              />
+            </svg>
+          </a>
+          <a
+            class="social-btn"
+            href="https://www.facebook.com/crossthecitytiberias"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="פייסבוק — Cross The City"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M13.5 22v-8h2.7l.4-3H13.5V9.1c0-.9.2-1.5 1.5-1.5H16.5V5.1c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V11H8v3h2.1v8z"
+              />
+            </svg>
+          </a>
+        </div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+          <span></span><span></span><span></span>
+          <span class="sr-only">פתיחת תפריט</span>
+        </button>
+        <nav id="main-nav" class="main-nav">
+        <a href="#about">על המועדון</a>
+        <a href="#training">האימונים</a>
+        <a href="#why-us">למה אנחנו</a>
+        <a class="nav-cta whatsapp-link" href="#">
+          <svg class="nav-cta__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+          <span>וואטסאפ</span>
+        </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="intro-scroll">
+        <section id="hero" class="hero">
+          <div class="hero-media">
+            <img
+              src="/cross-the-city-hero-gym.jpg"
+              alt="מתחם אימונים גדול עם מתקנים ומשקולות משני הצדדים"
+              width="1536"
+              height="864"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <img
+              class="hero-wall-logo"
+              src="/____________________________-d6af2354-4f1a-42d0-a3a4-2eed12578e9d.png"
+              alt=""
+              aria-hidden="true"
+              width="260"
+              height="260"
+              decoding="async"
+            />
+          </div>
+          <div class="hero-inner">
+            <p class="hero-club-label reveal">מועדון כושר</p>
+            <div class="hero-kicker reveal">
+              <img
+                class="hero-wordmark hero-wordmark--city-sign"
+                src="./cross-the-city-wordmark.png"
+                alt="CROSS THE CITY"
+                width="695"
+                height="585"
+                decoding="async"
+              />
+              <span class="hero-kicker__loc">טבריה</span>
+            </div>
+            <h1 class="hero-title reveal">בונה אותך לגרסה <em>החזקה</em> שלך.</h1>
+            <ul class="hero-values reveal" aria-label="כוח · ביטחון · נוכחות">
+              <li>כוח</li>
+              <li>ביטחון</li>
+              <li>נוכחות</li>
+            </ul>
+            <p class="hero-lead reveal">מומחים בשינוי הרכב הגוף</p>
+            <a class="button button-primary button-hero whatsapp-link reveal" href="#contact">
+              שליחת הודעה בוואטסאפ
+            </a>
+          </div>
+          <p class="scroll-cue" aria-hidden="true">
+            <span class="scroll-cue__label">גללו</span>
+            <span class="scroll-cue__arrow" aria-hidden="true">↓</span>
+          </p>
+        </section>
+
+        <section id="about" class="section about">
+          <div class="about-content">
+            <div class="about-layout">
+              <div class="about-copy reveal">
+                <p class="eyebrow">לא רק להתאמן, להתקדם. וביחד.</p>
+                <p>
+                  Cross The City הוא מועדון כושר ואימונים פונקציונליים בטבריה, בהובלת
+                  חן סלמן. כאן שמים דגש על עבודה עקבית, הדרכה מקצועית והתאמה למטרות
+                  ולרמה של כל מתאמן ומתאמנת.
+                </p>
+                <p>
+                  בין אם המטרה היא להתחזק, לשפר את הכושר, לעבוד על הרכב הגוף או
+                  להכניס שגרת אימונים לחיים — הדרך מתחילה במסגרת נכונה.
+                </p>
+              </div>
+              <figure class="about-image reveal">
+                <img
+                  src="./chen-salman-cutout.png"
+                  alt="חן סלמן, הבעלים והמוביל המקצועי של Cross The City"
+                  loading="lazy"
+                />
+                <figcaption><strong>חן סלמן</strong><span>מאמן · מנטור · מוביל מקצועי</span></figcaption>
+              </figure>
+              <a class="button button-primary about-cta whatsapp-link reveal" href="#contact">
+                לשיעור ניסיון בחינם
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section id="training" class="section training">
+        <div class="section-heading reveal">
+          <div class="section-tag">האימונים</div>
+          <div>
+            <p class="eyebrow">כל מטרה מתחילה בעבודה נכונה</p>
+            <h2>המטרה שלך.<br />התוכנית שלנו.</h2>
+          </div>
+          <p>
+            מגוון אימונים למבוגרים, לילדים ולבני נוער — תוך התאמה לרמת הכושר
+            ולמטרות האישיות.
+          </p>
+        </div>
+        <div class="training-grid">
+          <article class="training-card reveal">
+            <img
+              src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&w=1000&q=80"
+              alt="אימון פונקציונלי עם חבלים"
+              loading="lazy"
+            />
+            <div class="card-shade"></div>
+            <div class="card-content">
+              <h3>אימונים פונקציונליים</h3>
+              <p>עבודה מגוונת שמשלבת כוח, סיבולת, תנועה וקואורדינציה.</p>
+            </div>
+          </article>
+          <article class="training-card reveal">
+            <img
+              src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1000&q=80"
+              alt="מתאמן מבצע אימון כוח"
+              loading="lazy"
+            />
+            <div class="card-shade"></div>
+            <div class="card-content">
+              <h3>אימוני כוח</h3>
+              <p>בניית בסיס חזק, שיפור היכולת ועבודה מדויקת לאורך זמן.</p>
+            </div>
+          </article>
+          <article class="training-card reveal">
+            <img
+              src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80"
+              alt="מתאמנים באימון קבוצתי"
+              loading="lazy"
+            />
+            <div class="card-shade"></div>
+            <div class="card-content">
+              <h3>חיטוב והרכב הגוף</h3>
+              <p>מסגרת עקבית לעבודה על הכושר, ההרגלים והמטרות האישיות.</p>
+            </div>
+          </article>
+          <article class="training-card reveal">
+            <img
+              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1000&q=80"
+              alt="אימון מותאם לילדים ולבני נוער"
+              loading="lazy"
+            />
+            <div class="card-shade"></div>
+            <div class="card-content">
+              <h3>אימוני ילדים ונוער</h3>
+              <p>כוח, כושר וליווי מקצועי — מותאם לגיל ולרמה.</p>
+            </div>
+          </article>
+        </div>
+        <p class="photo-note">התמונות להמחשה בלבד ואינן מציגות את לקוחות המועדון.</p>
+      </section>
+
+      <section id="audience" class="section audience">
+        <div class="audience-copy reveal">
+          <div class="section-tag">למי זה מתאים?</div>
+          <p class="eyebrow">בונה אותך לגרסה החזקה שלך</p>
+          <h2>כשמחפשים יותר<br />מסתם אימון.</h2>
+          <p>
+            Cross The City מתאים למי שרוצה מסגרת מקצועית, ליווי אישי ותהליך
+            שמתקדם עם המטרות — בלי קיצורי דרך ובלי הבטחות ריקות.
+          </p>
+          <a class="text-link" href="#contact">בואו נבדוק התאמה <span>←</span></a>
+        </div>
+      </section>
+
+      <section id="why-us" class="section why-us">
+        <div class="why-media" role="img" aria-label="מאמן מלווה מתאמן במהלך אימון"></div>
+        <div class="why-panel">
+          <div class="section-tag reveal">למה Cross The City?</div>
+          <p class="eyebrow reveal">יותר ממקום להתאמן בו</p>
+          <h2 class="reveal">הכוח הוא בתהליך.</h2>
+          <div class="benefits">
+            <article class="benefit reveal">
+              <div class="benefit__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <circle cx="12" cy="8" r="3.5" />
+                  <path d="M5 20c0-3.5 3.1-6 7-6s7 2.5 7 6" />
+                </svg>
+              </div>
+              <div class="benefit__body">
+                <h3>יחס אישי</h3>
+                <p>התייחסות למטרות, לרמה ולקצב של כל מתאמן ומתאמנת.</p>
+              </div>
+            </article>
+            <article class="benefit reveal">
+              <div class="benefit__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M4 19V5" />
+                  <path d="M4 19h16" />
+                  <path d="M8 15l3-4 3 2 4-6" />
+                </svg>
+              </div>
+              <div class="benefit__body">
+                <h3>ליווי מקצועי</h3>
+                <p>הדרכה שמסייעת לעבוד נכון ולהתקדם באופן הדרגתי.</p>
+              </div>
+            </article>
+            <article class="benefit reveal">
+              <div class="benefit__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M17 2l4 4-4 4" />
+                  <path d="M3 11v-1a4 4 0 0 1 4-4h14" />
+                  <path d="M7 22l-4-4 4-4" />
+                  <path d="M21 13v1a4 4 0 0 1-4 4H3" />
+                </svg>
+              </div>
+              <div class="benefit__body">
+                <h3>התמדה לפני הכול</h3>
+                <p>בונים שגרה ומתקדמים בעבודה עקבית, בלי קיצורי דרך.</p>
+              </div>
+            </article>
+            <article class="benefit reveal">
+              <div class="benefit__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <circle cx="12" cy="12" r="8" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              </div>
+              <div class="benefit__body">
+                <h3>מטרות אישיות</h3>
+                <p>כל דרך נראית אחרת. אנחנו כאן כדי לעזור למצוא את הדרך שלך.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="contact-glow" aria-hidden="true"></div>
+        <div class="contact-content reveal">
+          <p class="eyebrow">הצעד הראשון מתחיל עכשיו</p>
+          <h2>מוכנים להתחיל<br /><em>להתחזק?</em></h2>
+          <p>השאירו פרטים ונחזור אליכם — או המשיכו ישירות לוואטסאפ.</p>
+          <form class="lead-form reveal" id="lead-form" novalidate>
+            <div class="field">
+              <label for="lead-name">שם מלא</label>
+              <input
+                id="lead-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+                maxlength="80"
+              />
+            </div>
+            <div class="field">
+              <label for="lead-phone">טלפון</label>
+              <input
+                id="lead-phone"
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                inputmode="tel"
+                required
+                maxlength="20"
+                placeholder="05X-XXXXXXX"
+              />
+            </div>
+            <div class="field">
+              <label for="lead-topic">מה מעניין אותך?</label>
+              <select id="lead-topic" name="topic">
+                <option value="">בחרו נושא</option>
+                <option value="בדיקת התאמה">בדיקת התאמה</option>
+                <option value="אימונים פונקציונליים">אימונים פונקציונליים</option>
+                <option value="אימוני כוח">אימוני כוח</option>
+                <option value="אימוני ילדים ונוער">אימוני ילדים ונוער</option>
+                <option value="אחר">אחר</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="lead-message">הודעה (אופציונלי)</label>
+              <textarea id="lead-message" name="message" rows="3" maxlength="500"></textarea>
+            </div>
+            <button class="button button-primary" type="submit">שליחת פרטים</button>
+            <p class="form-note">הפרטים יישלחו לוואטסאפ של המועדון לטיפול מהיר.</p>
+          </form>
+          <div class="contact-actions">
+            <button class="button button-ghost whatsapp-pending" type="button">
+              שלחו הודעה ישירות בוואטסאפ
+            </button>
+          </div>
+        </div>
+        <div class="contact-details reveal">
+          <div><span>מיקום</span><strong>טבריה</strong></div>
+          <div><span>שעות פעילות</span><strong>יעודכנו בקרוב</strong></div>
+          <div><span>טלפון / וואטסאפ</span><strong id="contact-phone">053-231-7044</strong></div>
+          <div>
+            <span>אינסטגרם</span>
+            <a
+              id="contact-instagram"
+              class="instagram-link"
+              href="https://www.instagram.com/cross.the.city/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >@cross.the.city ↗</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <strong>CROSS THE CITY</strong>
+        <span>מועדון כושר ואימונים פונקציונליים · טבריה</span>
+      </div>
+      <nav aria-label="קישורי תחתית">
+        <a href="#about">המועדון</a>
+        <a href="#training">האימונים</a>
+        <a href="#why-us">למה אנחנו</a>
+        <a href="#contact">יצירת קשר</a>
+      </nav>
+      <div class="footer-meta">
+        <span>© <span id="year"></span> Cross The City. כל הזכויות שמורות.</span>
+        <span>מדיניות פרטיות — תפורסם בהמשך</span>
+      </div>
+    </footer>
+
+    <div class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

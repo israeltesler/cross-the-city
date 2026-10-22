@@ -87,22 +87,24 @@ function initSiteLoader() {
 
   const startedAt = performance.now();
   const heroImage = document.querySelector(".hero-media > img:not(.hero-wall-logo)");
+  const loaderWordmark = document.querySelector(".site-loader__wordmark");
 
-  const waitForHero = heroImage
-    ? heroImage.complete
+  function waitForImage(img) {
+    if (!img) return Promise.resolve();
+    return img.complete
       ? Promise.resolve()
       : new Promise((resolve) => {
-          heroImage.addEventListener("load", resolve, { once: true });
-          heroImage.addEventListener("error", resolve, { once: true });
-        })
-    : Promise.resolve();
+          img.addEventListener("load", resolve, { once: true });
+          img.addEventListener("error", resolve, { once: true });
+        });
+  }
 
   const waitForWindow = new Promise((resolve) => {
     if (document.readyState === "complete") resolve();
     else window.addEventListener("load", resolve, { once: true });
   });
 
-  Promise.all([waitForHero, waitForWindow]).then(() => {
+  Promise.all([waitForImage(heroImage), waitForImage(loaderWordmark), waitForWindow]).then(() => {
     const elapsed = performance.now() - startedAt;
     const remaining = Math.max(0, loaderMinMs - elapsed);
     window.setTimeout(finishLoading, remaining);
@@ -117,7 +119,7 @@ if (!loader) {
 } else if (reducedMotion) {
   window.setTimeout(() => {
     finishLoading();
-    revealItems.forEach((item) => item.classList.add("visible"));
+    document.querySelectorAll(".reveal").forEach((item) => item.classList.add("visible"));
   }, 120);
 } else {
   initSiteLoader();

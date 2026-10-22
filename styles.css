@@ -95,7 +95,9 @@ body.is-loading main {
 
 .site-loader__wordmark {
   margin: 0;
-  line-height: 0.84;
+  opacity: 0;
+  transform: translateY(1.1em) scale(0.96);
+  animation: loader-line-in 680ms cubic-bezier(0.22, 1, 0.36, 1) 180ms forwards;
 }
 
 .site-loader__line {
@@ -473,7 +475,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   padding: calc(var(--header-height) + 32px) clamp(24px, 6vw, 88px)
     clamp(52px, 9vh, 96px);
   isolation: isolate;
@@ -499,17 +501,41 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  filter: saturate(calc(0.72 + var(--intro-progress) * 0.12))
-    contrast(calc(1.08 + var(--intro-progress) * 0.06))
-    brightness(calc(0.76 + var(--intro-progress) * 0.16));
+  filter:
+    saturate(calc(0.8 + var(--intro-progress) * 0.2))
+    contrast(calc(1.04 + var(--intro-progress) * 0.05))
+    brightness(calc(0.84 + var(--intro-progress) * 0.22));
   transform: scale(calc(1.06 + var(--intro-progress) * 0.76));
   transform-origin: center center;
   will-change: transform, filter;
 }
 
-.hero-media .hero-wall-logo {
+.hero-media::after {
   position: absolute;
   z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at 50% 46%,
+      rgba(196, 255, 177, 0.2) 0%,
+      rgba(86, 255, 22, 0.08) 25%,
+      transparent 58%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      transparent 34%,
+      rgba(86, 255, 22, 0.06) 100%
+    );
+  mix-blend-mode: screen;
+  opacity: calc(0.28 + var(--intro-progress) * 0.6);
+  content: "";
+}
+
+.hero-media .hero-wall-logo {
+  position: absolute;
+  z-index: 2;
   top: 47%;
   left: 50%;
   width: clamp(132px, 17vw, 230px);
@@ -546,9 +572,9 @@ button {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 46%, rgba(8, 10, 8, 0.08) 0 22%, rgba(8, 10, 8, 0.42) 78%),
-    linear-gradient(180deg, rgba(8, 10, 8, 0.38), transparent 28%, transparent 72%, rgba(8, 10, 8, 0.55));
-  opacity: calc(1 - var(--intro-progress) * 0.55);
+    radial-gradient(circle at 50% 46%, rgba(8, 10, 8, 0.03) 0 24%, rgba(8, 10, 8, 0.28) 82%),
+    linear-gradient(180deg, rgba(8, 10, 8, 0.24), transparent 30%, transparent 74%, rgba(8, 10, 8, 0.42));
+  opacity: calc(1 - var(--intro-progress) * 0.62);
   content: "";
 }
 
@@ -864,6 +890,8 @@ button {
   align-items: center;
   gap: 8px;
   margin: 0;
+  padding-bottom: 6px;
+  overflow: visible;
   color: rgba(244, 247, 241, 0.72);
   font-size: 0.72rem;
   font-weight: 800;
@@ -885,16 +913,25 @@ button {
 }
 
 .scroll-cue__arrow {
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   width: 28px;
   height: 28px;
   border: 1px solid rgba(86, 255, 22, 0.45);
   border-radius: 50%;
   color: var(--green);
-  font-size: 0.95rem;
-  line-height: 1;
+  direction: ltr;
   animation: scroll-cue-bounce 1.8s ease-in-out infinite;
+}
+
+.scroll-cue__arrow svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
 }
 
 @keyframes scroll-cue-bounce {
@@ -904,7 +941,7 @@ button {
   }
 
   50% {
-    transform: translateY(6px);
+    transform: translateY(4px);
   }
 }
 
@@ -1864,6 +1901,34 @@ button {
 }
 
 @media (min-width: 761px) {
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-inline: auto;
+    padding-top: calc(var(--header-height) - 32px);
+    text-align: center;
+    transform:
+      translateY(-52px)
+      translateY(calc(var(--intro-progress) * -7vh))
+      scale(calc(1 - var(--intro-progress) * 0.06));
+  }
+
+  .hero-inner .hero-club-label,
+  .hero-inner .hero-kicker,
+  .hero-inner .hero-title,
+  .hero-inner .hero-values,
+  .hero-inner .hero-lead,
+  .hero-inner .button-hero {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-inner .button-hero {
+    align-self: center;
+    justify-content: center;
+  }
+
   .hero > .scroll-cue {
     position: fixed;
     z-index: 95;
@@ -1988,7 +2053,7 @@ button {
     position: fixed;
     z-index: 200;
     right: auto;
-    bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
     left: 50%;
     flex-direction: column;
     gap: 5px;
@@ -2001,6 +2066,11 @@ button {
   .hero > .scroll-cue .scroll-cue__arrow {
     width: 25px;
     height: 25px;
+  }
+
+  .hero > .scroll-cue .scroll-cue__arrow svg {
+    width: 12px;
+    height: 12px;
   }
 
   .hero-inner {
@@ -2478,6 +2548,12 @@ button {
     transform: none;
   }
 
+}
+
+@media (prefers-reduced-motion: reduce) and (min-width: 761px) {
+  .hero-inner {
+    transform: translateY(-52px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) and (max-width: 760px) {

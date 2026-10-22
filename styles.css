@@ -1159,11 +1159,19 @@ button {
   margin-top: 70px;
 }
 
+a.training-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 .training-card {
   position: relative;
-  min-height: 520px;
+  aspect-ratio: 4 / 3;
+  min-height: 0;
   overflow: hidden;
-  background: var(--panel);
+  background: transparent;
+  cursor: pointer;
 }
 
 .training-card img {
@@ -1206,7 +1214,8 @@ button {
   color: #c4cbc1;
 }
 
-.card-content a {
+.card-content a,
+.card-content .training-card-more {
   display: inline-flex;
   justify-content: center;
   gap: 12px;
@@ -1215,12 +1224,80 @@ button {
   font-weight: 800;
 }
 
-.card-content a b {
+.card-content a b,
+.card-content .training-card-more b {
   transition: transform 200ms ease;
 }
 
+.training-card:hover .training-card-more b,
 .card-content a:hover b {
   transform: translateX(-5px);
+}
+
+.training-detail {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 48px) clamp(22px, 5vw, 64px)
+    clamp(64px, 10vw, 112px);
+  text-align: center;
+}
+
+.training-detail__back {
+  display: inline-flex;
+  margin-bottom: 22px;
+  color: var(--green);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.training-detail__hero {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  max-height: min(48vh, 440px);
+  margin-bottom: 32px;
+  border-radius: var(--radius);
+}
+
+.training-detail__hero img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.35);
+}
+
+.training-detail__content {
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+.training-detail__content h1 {
+  margin: 12px 0 16px;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.08;
+}
+
+.training-detail__lead {
+  margin: 0 0 24px;
+  color: #d3d8d1;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.55;
+}
+
+.training-detail__body p {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.8vw, 1.12rem);
+  line-height: 1.65;
+  text-align: right;
+}
+
+.training-detail__cta {
+  margin-top: 32px;
+}
+
+.training-detail .photo-note {
+  margin-top: 20px;
 }
 
 .photo-note {
@@ -1228,6 +1305,23 @@ button {
   color: #737b71;
   font-size: 0.76rem;
   text-align: center;
+}
+
+.subpage-main {
+  padding-top: calc(var(--header-height) + 8px);
+}
+
+.subpage-section.audience {
+  padding-top: clamp(48px, 8vw, 88px);
+  padding-bottom: clamp(72px, 12vw, 120px);
+}
+
+.subpage-section.why-us {
+  min-height: calc(100svh - var(--header-height));
+}
+
+.subpage-cta {
+  margin-top: 40px;
 }
 
 .audience {
@@ -1249,8 +1343,26 @@ button {
 }
 
 .audience-copy {
-  max-width: 640px;
+  max-width: 720px;
   margin-inline: auto;
+  text-align: center;
+}
+
+.audience-copy .benefits {
+  margin-top: 40px;
+}
+
+.audience-note {
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.audience-note a {
+  color: var(--green);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .text-link {
@@ -1273,8 +1385,8 @@ button {
 
 .why-media {
   z-index: -2;
-  background: url("https://images.unsplash.com/photo-1571388208497-71bedc66e932?auto=format&fit=crop&w=2000&q=84") 30% center / cover;
-  filter: grayscale(0.75);
+  background: url("/cross-the-city-hero-gym.jpg") center center / cover;
+  filter: grayscale(0.35) contrast(1.05);
 }
 
 .why-us::before {
@@ -1299,6 +1411,14 @@ button {
 
 .why-panel > .eyebrow {
   margin-top: 65px;
+}
+
+.why-panel > .why-lead {
+  max-width: 560px;
+  margin: 28px auto 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
 }
 
 .benefits {
@@ -1805,10 +1925,11 @@ button {
   max-width: 520px;
 }
 
-.footer-brand strong {
-  color: var(--green);
-  font-size: 1.2rem;
-  font-weight: 900;
+.footer-wordmark {
+  display: block;
+  width: min(100%, clamp(220px, 34vw, 380px));
+  height: auto;
+  margin: 0 auto;
 }
 
 .footer-brand span,
@@ -1939,6 +2060,98 @@ button {
     transform: none;
   }
 
+  .training.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    min-height: 100svh;
+    padding: calc(var(--header-height) + 20px) clamp(22px, 4vw, 56px) 28px;
+  }
+
+  .training .section-heading {
+    flex-shrink: 0;
+    gap: 16px;
+  }
+
+  .training .section-heading .section-tag {
+    font-size: 0.95rem;
+  }
+
+  .training .section-heading .eyebrow {
+    margin-bottom: 0;
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+  }
+
+  .training .section-heading h2 {
+    font-size: clamp(2.55rem, 5.2vw, 4.65rem);
+    line-height: 1.05;
+  }
+
+  .training .section-heading > p {
+    max-width: 44rem;
+    margin: 0;
+    font-size: clamp(1.08rem, 1.55vw, 1.28rem);
+    line-height: 1.5;
+  }
+
+  .training-grid {
+    flex: 1 1 auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    align-content: center;
+    gap: clamp(16px, 2vw, 24px);
+    width: 100%;
+    max-width: min(1480px, 100%);
+    margin-top: clamp(22px, 3.2vh, 40px);
+    margin-inline: auto;
+  }
+
+  .training-grid .training-card {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    background: transparent;
+  }
+
+  .training-grid .training-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .training-grid .training-card:hover img {
+    transform: scale(1.03);
+  }
+
+  .training .card-content {
+    padding: clamp(22px, 2.5vw, 36px) clamp(20px, 2.2vw, 32px);
+  }
+
+  .training .card-content h3 {
+    font-size: clamp(1.55rem, 2.2vw, 2.35rem);
+  }
+
+  .training .card-content p {
+    max-width: none;
+    font-size: clamp(0.95rem, 1.15vw, 1.12rem);
+    line-height: 1.45;
+  }
+
+  .training .card-content .training-card-more {
+    margin-top: 14px;
+    font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+  }
+
+  .training > .photo-note {
+    flex-shrink: 0;
+    margin-top: 14px !important;
+    font-size: 0.82rem;
+  }
 }
 
 :focus-visible {
@@ -2254,18 +2467,44 @@ button {
   }
 
   .training-grid {
+    grid-template-areas: none;
     grid-template-columns: 1fr;
     margin-top: 28px;
-    gap: 12px;
+    gap: 16px;
   }
 
-  .training-card {
-    min-height: 360px;
+  .training-grid .training-card:nth-child(n) {
+    grid-area: auto;
   }
 
   .training-card img {
     position: absolute;
     inset: 0;
+  }
+
+  .training .section-heading h2 {
+    font-size: clamp(2.15rem, 10.5vw, 3.35rem);
+  }
+
+  .training .section-heading > p {
+    font-size: clamp(1rem, 4.2vw, 1.12rem);
+  }
+
+  .training .card-content {
+    padding: 24px 20px 26px;
+  }
+
+  .training .card-content h3 {
+    font-size: clamp(1.65rem, 7.5vw, 2.25rem);
+  }
+
+  .training .card-content p {
+    font-size: clamp(0.98rem, 4vw, 1.08rem);
+  }
+
+  .training .card-content .training-card-more {
+    margin-top: 16px;
+    font-size: 0.98rem;
   }
 
   .card-content {
@@ -2568,9 +2807,5 @@ button {
 
   .training-grid {
     grid-template-columns: 1fr;
-  }
-
-  .training-card {
-    min-height: 360px;
   }
 }

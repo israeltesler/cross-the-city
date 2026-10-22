@@ -5,10 +5,24 @@ const siteConfig = {
   instagramHandle: "cross.the.city",
   instagramUrl: "https://www.instagram.com/cross.the.city/",
   facebookUrl: "https://www.facebook.com/crossthecitytiberias",
+  /** קישור ישיר (Google Maps / Waze) — אם קיים, עדיף על mapsQuery */
+  mapsUrl: "",
+  /** כתובת מלאה לניווט — ימולא כשיהיה (למשל: "רחוב …, טבריה") */
+  mapsQuery: "",
 };
 
 function buildWhatsAppUrl(message) {
   return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
+function getMapsNavigationUrl() {
+  if (siteConfig.mapsUrl?.trim()) {
+    return siteConfig.mapsUrl.trim();
+  }
+
+  const query =
+    siteConfig.mapsQuery?.trim() || "Cross The City, Tiberia, Israel";
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(query)}`;
 }
 
 const siteConfigWhatsApp = {
@@ -25,6 +39,7 @@ const loaderMaxMs = 4500;
 const loaderFinishMs = 480;
 let loaderProgressRaf = 0;
 let loaderProgressValue = 0;
+let afterSiteLoaderReady = () => {};
 
 function revealHeroCopy() {
   document.querySelectorAll(".hero .reveal").forEach((item) => {
@@ -75,6 +90,7 @@ function finishLoading() {
     loader.setAttribute("aria-busy", "false");
     document.body.classList.remove("is-loading");
     revealHeroCopy();
+    afterSiteLoaderReady();
     window.setTimeout(() => loader.remove(), 780);
   }, loaderFinishMs);
 }
@@ -169,12 +185,66 @@ function updateScrollCueVisibility() {
   scrollCue.classList.toggle("scroll-cue--hide", hasStartedScrolling);
 }
 
+function getIntroScrollRange() {
+  return window.innerHeight * 1.85;
+}
+
+function getAboutSectionScrollY() {
+  if (!introScroll) return null;
+  const introTop = introScroll.getBoundingClientRect().top + window.scrollY;
+  return introTop + getIntroScrollRange();
+}
+
+function revealAboutSection() {
+  document.querySelectorAll("#about .reveal").forEach((item) => {
+    item.classList.add("visible");
+  });
+}
+
+function syncIntroAfterScroll() {
+  if (updateIntroTransition) {
+    updateIntroTransition();
+  } else {
+    updateScrollCueVisibility();
+  }
+}
+
+function scrollToAboutSection({ behavior = "auto" } = {}) {
+  if (!introScroll || reducedMotion) return false;
+
+  const targetY = getAboutSectionScrollY();
+  if (targetY == null) return false;
+
+  window.scrollTo({ top: targetY, left: 0, behavior });
+  syncIntroAfterScroll();
+  revealAboutSection();
+  return true;
+}
+
+function handleAboutHashNavigation({ behavior = "auto" } = {}) {
+  if (window.location.hash !== "#about") return false;
+  return scrollToAboutSection({ behavior });
+}
+
+function isAboutNavLink(link) {
+  const href = link.getAttribute("href");
+  if (!href) return false;
+  if (href === "#about") return true;
+  if (href === "/#about" || href.endsWith("/#about")) {
+    const path = window.location.pathname.replace(/\/index\.html$/, "/");
+    return path === "/" || path.endsWith("/");
+  }
+  return false;
+}
+
+let updateIntroTransition = null;
+
 if (introScroll && !reducedMotion) {
   let introFrame = 0;
 
-  function updateIntroTransition() {
+  updateIntroTransition = function updateIntroTransition() {
     introFrame = 0;
-    const scrollRange = window.innerHeight * 1.85;
+    const scrollRange = getIntroScrollRange();
     const progress = Math.min(
       1,
       Math.max(0, -introScroll.getBoundingClientRect().top / scrollRange),
@@ -182,7 +252,7 @@ if (introScroll && !reducedMotion) {
 
     introScroll.style.setProperty("--intro-progress", progress.toFixed(4));
     updateScrollCueVisibility();
-  }
+  };
 
   function requestIntroTransition() {
     if (introFrame) return;
@@ -194,6 +264,40 @@ if (introScroll && !reducedMotion) {
   window.addEventListener("resize", requestIntroTransition);
 } else {
   updateScrollCueVisibility();
+}
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a");
+  if (!link || !isAboutNavLink(link)) return;
+  if (!introScroll || reducedMotion) return;
+
+  event.preventDefault();
+  const behavior = reducedMotion ? "auto" : "smooth";
+  if (window.location.hash !== "#about") {
+    history.pushState(null, "", "#about");
+  }
+  scrollToAboutSection({ behavior });
+});
+
+window.addEventListener("hashchange", () => {
+  handleAboutHashNavigation({ behavior: "auto" });
+});
+
+function runAboutHashScrollAfterLoad() {
+  if (!handleAboutHashNavigation({ behavior: "auto" })) return;
+  window.requestAnimationFrame(() => {
+    handleAboutHashNavigation({ behavior: "auto" });
+  });
+}
+
+afterSiteLoaderReady = runAboutHashScrollAfterLoad;
+
+if (!loader) {
+  if (document.readyState === "complete") {
+    runAboutHashScrollAfterLoad();
+  } else {
+    window.addEventListener("load", runAboutHashScrollAfterLoad, { once: true });
+  }
 }
 
 const revealItems = document.querySelectorAll(".reveal");
@@ -233,6 +337,12 @@ function showToast(message) {
   window.clearTimeout(toastTimer);
   toastTimer = window.setTimeout(() => toast.classList.remove("show"), 3600);
 }
+
+document.querySelectorAll(".maps-nav-link").forEach((link) => {
+  link.href = getMapsNavigationUrl();
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+});
 
 document.querySelectorAll(".whatsapp-link").forEach((link) => {
   if (!siteConfig.whatsappNumber) return;
